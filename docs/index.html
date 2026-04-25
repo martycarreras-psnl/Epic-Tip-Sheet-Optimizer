@@ -343,6 +343,92 @@
     }
     .stat-label { font-size: 14px; color: #64748b; font-weight: 500; margin-top: 4px; }
 
+    /* ── Setup ──────────────────────────────────────── */
+    .setup {
+      padding: 120px 0;
+      background: #1e1e2e;
+      color: #fff;
+    }
+    .setup .section-label { color: #a78bfa; }
+    .setup .section-heading { color: #fff; }
+    .setup .section-sub { color: #94a3b8; }
+    .setup-steps {
+      max-width: 760px; margin: 56px auto 0;
+      display: flex; flex-direction: column; gap: 0;
+      position: relative;
+    }
+    .setup-steps::before {
+      content: ''; position: absolute;
+      left: 31px; top: 48px; bottom: 48px;
+      width: 2px; background: rgba(167,139,250,0.25);
+    }
+    .setup-step {
+      display: flex; gap: 28px; padding: 24px 0;
+      position: relative;
+    }
+    .setup-step-num {
+      width: 64px; height: 64px; border-radius: 16px;
+      background: rgba(124,58,237,0.15);
+      border: 1px solid rgba(167,139,250,0.25);
+      color: #a78bfa; font-size: 24px; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; z-index: 1;
+    }
+    .setup-step-body { flex: 1; padding-top: 6px; }
+    .setup-step-body h3 {
+      font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 8px;
+    }
+    .setup-step-body p {
+      font-size: 15px; color: #94a3b8; line-height: 1.65; margin-bottom: 12px;
+    }
+    .setup-path {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; padding: 10px 16px;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 13px; color: #c4b5fd;
+      display: inline-block;
+    }
+    .setup-path-label {
+      font-size: 12px; font-weight: 600; color: #64748b;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+    .setup-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; border-radius: 8px;
+      background: rgba(124,58,237,0.2); color: #c4b5fd;
+      font-size: 14px; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .setup-link:hover {
+      background: rgba(124,58,237,0.35); color: #e0d4ff;
+    }
+    .setup-visual {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 20px;
+      margin-top: 8px;
+    }
+    .setup-folder {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 0; font-size: 14px; color: #cbd5e1;
+    }
+    .setup-folder-icon { font-size: 18px; }
+    .setup-folder-name { font-weight: 600; color: #e2e8f0; }
+    .setup-folder-desc { color: #64748b; font-size: 13px; }
+    .setup-folder .nested {
+      padding-left: 28px;
+    }
+    .setup-check {
+      display: flex; align-items: center; gap: 10px;
+      padding: 14px 20px; border-radius: 10px;
+      background: rgba(34,197,94,0.1);
+      border: 1px solid rgba(34,197,94,0.2);
+      color: #4ade80; font-size: 15px; font-weight: 600;
+      margin-top: 12px;
+    }
+
     /* ── Responsive ────────────────────────────────────── */
     @media (max-width: 768px) {
       .nav-links { display: none; }
@@ -352,7 +438,9 @@
       .problem-grid { grid-template-columns: 1fr; }
       .steps-grid { grid-template-columns: 1fr; }
       .hero { padding: 120px 0 80px; }
-      .problem, .how-it-works, .skills, .prompts, .cta { padding: 80px 0; }
+      .problem, .how-it-works, .skills, .setup, .prompts, .cta { padding: 80px 0; }
+      .setup-step { gap: 16px; }
+      .setup-step-num { width: 48px; height: 48px; font-size: 18px; border-radius: 12px; }
     }
   </style>
 </head>
@@ -369,6 +457,7 @@
         <a href="#problem">Problem</a>
         <a href="#how-it-works">Process</a>
         <a href="#skills">Skills</a>
+        <a href="#setup">Setup</a>
         <a href="#prompts">Prompts</a>
         <a href="https://github.com/martycarreras-psnl/Epic-Tip-Sheet-Optimizer" class="nav-cta">
           GitHub →
@@ -391,9 +480,9 @@
         answer the moment they need it.
       </p>
       <div class="hero-actions">
-        <a href="https://github.com/martycarreras-psnl/Epic-Tip-Sheet-Optimizer" class="btn btn-primary">
-          Get Started on GitHub
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="#setup" class="btn btn-primary">
+          Get Started — It's Easy
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
       </div>
@@ -561,6 +650,132 @@
     </div>
   </section>
 
+  <!-- ── Setup ───────────────────────────────────────── -->
+  <section class="setup" id="setup">
+    <div class="container">
+      <p class="section-label">Setup Guide</p>
+      <h2 class="section-heading">Up and running in 3 minutes. No command line needed.</h2>
+      <p class="section-sub">
+        Just download two folders and drop them into your Copilot skills directory.
+        That's it — Cowork will automatically discover and use them.
+      </p>
+
+      <div class="setup-steps">
+
+        <!-- Step 1 -->
+        <div class="setup-step">
+          <div class="setup-step-num">1</div>
+          <div class="setup-step-body">
+            <h3>Download the Skills folders</h3>
+            <p>
+              Visit the GitHub repository and download the two skill folders.
+              You can download the entire repo as a ZIP — no account required.
+            </p>
+            <a href="https://github.com/martycarreras-psnl/Epic-Tip-Sheet-Optimizer/archive/refs/heads/main.zip" class="setup-link">
+              📦 Download ZIP
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3v8M4 8l4 4 4-4M3 13h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="setup-visual" style="margin-top: 16px;">
+              <div class="setup-folder">
+                <span class="setup-folder-icon">📁</span>
+                <span class="setup-folder-name">Skills/</span>
+              </div>
+              <div class="setup-folder" style="padding-left: 28px;">
+                <span class="setup-folder-icon">📂</span>
+                <span class="setup-folder-name">training-content-to-knowledge-base/</span>
+              </div>
+              <div class="setup-folder" style="padding-left: 56px;">
+                <span class="setup-folder-icon">📄</span>
+                <span>SKILL.md</span>
+                <span class="setup-folder-desc">— converts tip sheets to LLM-readable content</span>
+              </div>
+              <div class="setup-folder" style="padding-left: 28px;">
+                <span class="setup-folder-icon">📂</span>
+                <span class="setup-folder-name">eval-runner/</span>
+              </div>
+              <div class="setup-folder" style="padding-left: 56px;">
+                <span class="setup-folder-icon">📄</span>
+                <span>SKILL.md</span>
+                <span class="setup-folder-desc">— runs evals and produces scorecards</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="setup-step">
+          <div class="setup-step-num">2</div>
+          <div class="setup-step-body">
+            <h3>Find your Copilot skills folder</h3>
+            <p>
+              Open Finder (Mac) or File Explorer (Windows) and navigate to your
+              Copilot skills folder. If it doesn't exist yet, create it.
+            </p>
+            <div style="margin-bottom: 8px;">
+              <p class="setup-path-label">macOS</p>
+              <div class="setup-path">~/.copilot/skills/</div>
+            </div>
+            <div>
+              <p class="setup-path-label">Windows</p>
+              <div class="setup-path">%USERPROFILE%\.copilot\skills\</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="setup-step">
+          <div class="setup-step-num">3</div>
+          <div class="setup-step-body">
+            <h3>Drop the skill folders in</h3>
+            <p>
+              From the downloaded ZIP, copy the two folders inside <strong>Skills/</strong>
+              into your Copilot skills directory. Your folder should look like this:
+            </p>
+            <div class="setup-visual">
+              <div class="setup-folder">
+                <span class="setup-folder-icon">📁</span>
+                <span class="setup-folder-name">.copilot/skills/</span>
+              </div>
+              <div class="setup-folder" style="padding-left: 28px;">
+                <span class="setup-folder-icon">📂</span>
+                <span class="setup-folder-name">training-content-to-knowledge-base/</span>
+              </div>
+              <div class="setup-folder" style="padding-left: 56px;">
+                <span class="setup-folder-icon">📄</span>
+                <span>SKILL.md</span>
+              </div>
+              <div class="setup-folder" style="padding-left: 28px;">
+                <span class="setup-folder-icon">📂</span>
+                <span class="setup-folder-name">eval-runner/</span>
+              </div>
+              <div class="setup-folder" style="padding-left: 56px;">
+                <span class="setup-folder-icon">📄</span>
+                <span>SKILL.md</span>
+              </div>
+            </div>
+            <div class="setup-check">
+              ✅ &nbsp;Done! Cowork will automatically discover these skills.
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="setup-step">
+          <div class="setup-step-num">4</div>
+          <div class="setup-step-body">
+            <h3>Open Cowork and start converting</h3>
+            <p>
+              Launch M365 Copilot Cowork, place your tip sheet PDF in an <strong>input/</strong>
+              folder in your working directory, and use the prompts below to begin.
+              The skills will activate automatically when Cowork recognizes your request.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ── Prompts ──────────────────────────────────────── -->
   <section class="prompts" id="prompts">
     <div class="container">
@@ -623,13 +838,18 @@
     <div class="container">
       <h2>Ready to unlock your tip sheets?</h2>
       <p>
-        Clone the repo, install the skills, and start converting today.
+        Download the skills, drop them in your folder, and start converting.
         Your Copilot agent will finally have the knowledge it needs.
       </p>
-      <a href="https://github.com/martycarreras-psnl/Epic-Tip-Sheet-Optimizer" class="btn btn-primary">
-        View on GitHub
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      <div class="hero-actions" style="justify-content: center;">
+        <a href="https://github.com/martycarreras-psnl/Epic-Tip-Sheet-Optimizer/archive/refs/heads/main.zip" class="btn btn-primary">
+          📦 Download Skills ZIP
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3v8M4 8l4 4 4-4M3 13h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#setup" class="btn btn-secondary" style="background: rgba(255,255,255,0.1); color: #c4b5fd;">
+          View Setup Guide
+        </a>
+      </div>
     </div>
   </section>
 
