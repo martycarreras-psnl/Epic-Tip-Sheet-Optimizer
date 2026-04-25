@@ -1,6 +1,6 @@
 # Epic Tip Sheet Optimizer
 
-Skills, processes, and artifacts for converting screenshot-heavy Epic training tip sheets into LLM-readable knowledge bases — with structured eval generation and validation — so Copilot agents can actually use them.
+Skills, processes, and artifacts — powered by **M365 Copilot Cowork** — for converting screenshot-heavy Epic training tip sheets into LLM-readable knowledge bases with structured eval generation and validation, so M365 Copilot agents can actually use them.
 
 ## Problem Statement
 
@@ -16,7 +16,7 @@ This repo provides the **Copilot skills and processes** to solve this at scale.
 
 ## How It Works
 
-The solution is a two-track process powered by GitHub Copilot skills that can be run inside VS Code or any Copilot-enabled environment.
+The solution is a two-track process powered by **M365 Copilot Cowork** — which orchestrates document conversion, skill execution, and reasoning — combined with custom Copilot skills that handle ingestion, eval generation, and analysis.
 
 ![Tip Sheet End-to-End Process](Assets/TipSheetEndtoEnd.png)
 
@@ -31,22 +31,36 @@ The solution is a two-track process powered by GitHub Copilot skills that can be
 | **5** | **Validate Content Accuracy** | Run the **Eval Runner** skill — executes the eval against the structured content, producing a scorecard with pass/fail, category breakdowns, and per-question results |
 | **6** | **Store in SharePoint** | Publish the validated tip sheet and eval data to a SharePoint library where M365 Copilot and/or WallE agents are grounded |
 
-### Secondary Process: Process Release Notes & Determine Impact to Tip Sheets
+### Secondary & Related Process: Process What's New & NOVA Release Notes and Determine Impact to Tip Sheets
 
 | Step | Action | Details |
-|------|--------|---------|
-| **1** | **Ingest Release Notes** | Collect What's New updates and Epic NOVA release notes |
-| **2** | **Convert to LLM-Readable** | Use M365 Cowork to convert release notes into LLM-readable PDFs |
-| **3** | **Ingest Release Notes Skill** | Extract changes and features into structured release notes |
-| **4** | **Compare with Tip Sheets** | Analyze the impact of release changes against existing structured tip sheets |
-| **5** | **Output Impact Report** | Produce an impact report identifying which tip sheets need updates and what new tip sheets are needed, stored in SharePoint |
+|------|--------|--------|
+| **1** | **Ingest Release Notes Sources** | Collect What's New updates and Epic NOVA release notes |
+| **2** | **Convert to LLM-Readable using M365 Cowork** | Cowork converts release notes documents into PDFs optimized for LLM consumption |
+| **3** | **Ingest with Release Notes Ingestion Skill** | Extract features, changes, fixes, and enhancements; identify impacted areas (workflows, screens, fields, functionality); normalize and structure content |
+| **4** | **Reason Over Tip Sheets vs. Release Notes** | Use M365 Cowork to compare structured release notes against structured tip sheets — identify changes that impact existing tip sheets, gaps (new functionality not covered), and new tip sheets needed |
+| **5** | **Output Impact Analysis** | Generate recommendations: tip sheets to update, new tip sheets needed, or no action — stored as an impact report (JSON/Report) in SharePoint |
+
+### Accessible by M365 Copilot Agent
+
+The M365 Copilot Agent is grounded in the SharePoint library and can:
+
+- Answer questions about tip sheets
+- Surface relevant steps and screenshots
+- Explain features and workflows
+- Support analysts, clinicians, and training teams
+
+All responses are grounded in the stored, validated content.
 
 ### Key Enablers & Components
 
-- **M365 Cowork** — Document conversion to LLM-readable formats
-- **Ingestion & Eval Skills** — The Copilot skills in this repo
-- **SharePoint** — Storage and grounding source for Copilot agents
-- **M365 Copilot and/or WallE Agents** — Downstream consumers grounded in the SharePoint library
+| Component | Role |
+|-----------|------|
+| **M365 Cowork** | Orchestrates document conversion, skill execution, and reasoning |
+| **Skills (Custom)** | Consistent logic for ingestion, structure, eval generation, and analysis |
+| **Evaluations** | Ensure quality, accuracy, and completeness of extracted content |
+| **SharePoint** | System of record and source of truth for Copilot Agent grounding |
+| **M365 Copilot Agent** | Delivers trusted, grounded answers using your organization's content |
 
 ## Repository Structure
 
