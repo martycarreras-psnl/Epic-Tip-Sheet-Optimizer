@@ -77,11 +77,13 @@
       font-size: 17px; font-weight: 800; letter-spacing: -0.02em;
       display: flex; align-items: center; gap: 10px;
     }
-    .nav-logo .icon {
+    .nav-logo-img {
       width: 32px; height: 32px; border-radius: 8px;
-      background: linear-gradient(135deg, #7c3aed, #a78bfa);
-      display: flex; align-items: center; justify-content: center;
-      color: #fff; font-size: 16px;
+      object-fit: cover;
+    }
+    .badge-icon {
+      width: 20px; height: 20px; border-radius: 4px;
+      object-fit: cover; vertical-align: middle;
     }
     .nav-links { display: flex; align-items: center; gap: 32px; }
     .nav-links a {
@@ -359,7 +361,7 @@
   <nav>
     <div class="container">
       <a href="#" class="nav-logo">
-        <span class="icon">⚡</span>
+        <img src="https://raw.githubusercontent.com/martycarreras-psnl/Epic-Tip-Sheet-Optimizer/main/Assets/logo.png" alt="Logo" class="nav-logo-img">
         Tip Sheet Optimizer
       </a>
       <div class="nav-links">
@@ -377,7 +379,7 @@
   <!-- ── Hero ─────────────────────────────────────────── -->
   <section class="hero">
     <div class="container">
-      <span class="badge">⚡ Powered by M365 Copilot Cowork</span>
+      <span class="badge"><img src="https://raw.githubusercontent.com/martycarreras-psnl/Epic-Tip-Sheet-Optimizer/main/Assets/logo.png" alt="" class="badge-icon"> Powered by M365 Copilot Cowork</span>
       <h1>
         Make every Epic tip sheet<br>
         <span class="gradient">findable, accurate & AI-ready</span>
