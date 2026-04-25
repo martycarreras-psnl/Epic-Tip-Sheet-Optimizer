@@ -104,9 +104,74 @@ Runs a structured eval against LLM-readable content to measure how well an LLM c
 
 3. **Prepare your tip sheet** — place the source PDF into an `input/` folder in your working directory
 
-4. **Run the ingestion skill** — ask Copilot to "convert this tip sheet to an LLM-readable knowledge base" and the skill will guide the process
+4. **Start a Cowork session** and use the prompts below to drive the end-to-end process
 
-5. **Run the eval** — ask Copilot to "run the eval" against the generated content to validate quality
+## Example Prompts
+
+Use these prompts in M365 Copilot Cowork to trigger the skills. They're designed to follow the end-to-end process in sequence.
+
+### Step 1 — Convert a Tip Sheet to LLM-Readable Content
+
+> **"Convert this tip sheet to an LLM-readable knowledge base"**
+
+Other ways to phrase it:
+- *"Make this training document AI-friendly"*
+- *"Ingest this tip sheet and produce a structured knowledge base"*
+- *"Convert this job aid so an LLM can understand it"*
+- *"Build a knowledge base from this training material"*
+
+This triggers the **Training Content to Knowledge Base** skill. It will:
+- Extract every page verbatim (text + screenshot descriptions)
+- Generate ENUMs for constrained value sets (buttons, tabs, dropdowns)
+- Produce a structured Markdown and/or JSON output in `output/`
+
+### Step 2 — Generate Eval Questions
+
+> **"Generate eval questions to test the LLM's ability to reason over this content"**
+
+Other ways to phrase it:
+- *"Create an eval for this tip sheet"*
+- *"Generate test questions with expected answers and scoring rubrics"*
+- *"Build an eval question set for the knowledge base content"*
+
+This produces a 20-question eval (JSON) across 5 categories: Factual Recall, Procedural Reasoning, Conditional/Scenario-Based, UI/Screenshot Comprehension, and Interpretation/Reasoning.
+
+### Step 3 — Run the Eval
+
+> **"Run the eval"**
+
+Other ways to phrase it:
+- *"Test the eval against the content"*
+- *"Score the eval"*
+- *"How well does the LLM do on these questions?"*
+
+This triggers the **Eval Runner** skill. It answers each question using *only* the content file (no answer key leakage), then grades each answer against the rubric. Output is a scorecard with pass/fail, category breakdowns, and per-question detail.
+
+### Targeted & Follow-Up Prompts
+
+Once you've run a full eval, you can drill into specific areas:
+
+| Prompt | What It Does |
+|--------|-------------|
+| *"Run just the factual recall questions"* | Runs only one eval category |
+| *"Run questions 5, 9, and 14"* | Runs a specific subset by question ID |
+| *"Re-run the eval after I updated the content"* | Full re-run, compares to previous scorecard |
+| *"Show me which questions failed last time"* | Filters the most recent scorecard to scores 0–1 |
+| *"Which categories scored below 50%?"* | Surfaces weak areas in the content |
+
+### End-to-End Prompt Sequence (Copy-Paste Ready)
+
+For a complete tip sheet conversion, use these prompts in order:
+
+```
+1. "Convert this tip sheet to an LLM-readable knowledge base and also generate the eval questions"
+2. "Run the eval"
+3. "Which questions scored 0 or 1? What content needs to be improved?"
+4. [Make the suggested improvements to the content]
+5. "Re-run the eval after I updated the content"
+```
+
+Repeat steps 3–5 until the eval passes (≥80% threshold).
 
 ## Contributing
 
